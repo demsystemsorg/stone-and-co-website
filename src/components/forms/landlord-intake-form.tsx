@@ -154,7 +154,8 @@ export function LandlordIntakeForm() {
     setValue,
     formState: { errors },
   } = useForm<LandlordIntakeValues>({
-    resolver: zodResolver(landlordIntakeSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(landlordIntakeSchema) as any,
     defaultValues: {
       preferredContact: "either",
       languagePreference: "en",
