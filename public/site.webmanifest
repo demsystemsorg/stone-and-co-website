@@ -1,0 +1,21 @@
+{
+  "name": "Stone & Co. Solicitors",
+  "short_name": "Stone & Co.",
+  "description": "Experienced solicitors in London offering Family Law, Immigration, Employment Law, Criminal Defense and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#B8860B",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

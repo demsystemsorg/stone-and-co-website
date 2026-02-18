@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/* ============================================
+   STONE & CO. SOLICITORS - DESIGN SYSTEM v2
+   "City-grade + calm + product-simple"
+   Cormorant Garamond (serif) + DM Sans (sans)
+   ============================================ */
+
+:root {
+  /* Core palette */
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --ink: #141412;
+  --ink-2: #1C1C19;
+  --muted: #3A3A35;
+  --dim: #6B6B63;
+  --line: #E7E1D7;
+  --line-soft: #F0EBE0;
+
+  /* Gold accent */
+  --gold: #C7A457;
+  --gold-soft: #E6D7AE;
+  --gold-deep: #B08B3D;
+  --gold-bg: #F9F5EC;
+
+  /* Semantic colors */
+  --success: #48BB78;
+  --error: #F56565;
+  --warning: #ECC94B;
+  --info: #4299E1;
+
+  /* Layout */
+  --content-max: 1160px;
+  --text-max: 720px;
+  --section-y: 96px;
+  --section-y-m: 64px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --dur: 180ms;
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 2px 0 rgba(20, 20, 18, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(20, 20, 18, 0.06);
+  --shadow-default: 0 4px 6px -1px rgba(20, 20, 18, 0.06), 0 2px 4px -2px rgba(20, 20, 18, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(20, 20, 18, 0.06), 0 4px 6px -4px rgba(20, 20, 18, 0.04);
+  --shadow-gold: 0 4px 14px 0 rgba(199, 164, 87, 0.15);
+}
+
+/* Tailwind v4 Theme Extension */
+@theme inline {
+  /* Backgrounds */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+
+  /* Text */
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+
+  /* Lines */
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  /* Gold palette */
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-bg: var(--gold-bg);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  /* Fonts — Cormorant Garamond + DM Sans */
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-gold: var(--shadow-gold);
+
+  /* ── Legacy compatibility tokens ──
+     These map old color names to v2 equivalents
+     so non-redesigned pages still render correctly. */
+  --color-foreground: var(--ink);
+  --color-background: var(--bg);
+  --color-background-secondary: #F0EBE0;
+  --color-background-tertiary: #E7E1D7;
+  --color-background-dark: var(--ink);
+  --color-background-elevated: var(--surface);
+  --color-background-card: var(--surface);
+  --color-text-secondary: var(--muted);
+  --color-text-tertiary: var(--dim);
+  --color-text-inverse: #FFFFFF;
+  --color-text-muted: var(--dim);
+
+  --color-gold-50: #FFFBEB;
+  --color-gold-100: #FEF3C7;
+  --color-gold-200: #FDE68A;
+  --color-gold-300: #FCD34D;
+  --color-gold-400: var(--gold-soft);
+  --color-gold-500: var(--gold);
+  --color-gold-600: var(--gold);
+  --color-gold-700: var(--gold-deep);
+  --color-gold-800: #9F7F21;
+  --color-gold-900: #78350F;
+
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E5E5E5;
+  --color-neutral-300: #D4D4D4;
+  --color-neutral-400: #A3A3A3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: var(--dim);
+  --color-neutral-700: var(--muted);
+  --color-neutral-800: var(--ink-2);
+  --color-neutral-900: var(--ink);
+  --color-neutral-950: #0A0A0A;
+
+  /* Legacy font aliases */
+  --font-display: var(--font-serif);
+  --font-body: var(--font-sans);
+}
+
+/* Base Styles */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--gold);
+  color: var(--ink);
+  z-index: 100;
+  transition: top 300ms var(--ease);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus Styles — Gold */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   GOLD RULE — Signature detail
+   48px × 1.5px gold line
+   ============================================ */
+.gold-rule {
+  display: block;
+  width: 48px;
+  height: 1.5px;
+  background: var(--gold);
+  margin-top: 12px;
+  border: none;
+}
+
+.gold-rule--center {
+  display: block;
+  width: 48px;
+  height: 1.5px;
+  background: var(--gold);
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+
+/* ============================================
+   EYEBROW — Uppercase small label
+   ============================================ */
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+/* Selection */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--line-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-soft);
+}
+
+/* Form Input Styling */
+.input-dark {
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  transition: all var(--dur) var(--ease);
+}
+
+.input-dark::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.input-dark:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(199, 164, 87, 0.2);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
