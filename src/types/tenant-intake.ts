@@ -65,7 +65,7 @@ export const tenantIntakeSchema = z
 
     // Claim
     issueType: z.enum(RRA_CLAIM_TYPES, {
-      errorMap: () => ({ message: "Please select an issue type" }),
+      error: "Please select an issue type",
     }),
     summary: z
       .string()
