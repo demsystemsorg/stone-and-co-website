@@ -95,7 +95,8 @@ export function TenantIntakeForm() {
     trigger,
     formState: { errors },
   } = useForm<TenantIntakeValues>({
-    resolver: zodResolver(tenantIntakeSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(tenantIntakeSchema) as any,
     defaultValues: {
       preferredContact: "either",
       officePreference: "no-preference",

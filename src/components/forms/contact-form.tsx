@@ -43,7 +43,8 @@ export function ContactForm() {
     reset,
     formState: { errors },
   } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(contactFormSchema) as any,
     defaultValues: {
       firstName: "",
       lastName: "",
