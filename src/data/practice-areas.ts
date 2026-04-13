@@ -1,255 +1,104 @@
 import type { PracticeArea } from "@/types/practice-area";
 
 /**
- * Practice area detailed data
+ * Practice area detailed data — 3 real practice areas
  */
 export const practiceAreas: PracticeArea[] = [
   {
-    id: "family-law",
-    slug: "family-law",
-    title: "Family Law",
+    id: "tenancy-deposit-claims",
+    slug: "tenancy-deposit-claims",
+    title: "Tenancy Deposit Claims",
     shortDescription:
-      "Divorce, separation, and family disputes handled with sensitivity and expertise.",
+      "Deposit protection failures, prescribed information claims, and up to 3x deposit compensation.",
     fullDescription:
-      "Our family law team understands that family matters are deeply personal and emotionally challenging. We provide compassionate yet robust legal support for all aspects of family law, from divorce proceedings to child arrangements. Our approach prioritizes resolution through negotiation where possible, while being prepared to advocate strongly in court when necessary.",
-    icon: "Heart",
+      "If your landlord failed to protect your tenancy deposit or provide the required prescribed information, you may be entitled to compensation of up to three times the deposit amount. Stone & Co. specialises in tenancy deposit claims — it is our primary area of expertise. We handle every type of deposit protection failure, from unprotected deposits to late protection and missing prescribed information, securing compensation efficiently and effectively.",
+    icon: "Shield",
     services: [
       {
-        title: "Divorce & Separation",
+        title: "No Deposit Protection",
         description:
-          "Expert guidance through divorce proceedings, including petition filing and decree absolute.",
+          "Claims where your landlord failed to place your deposit in a government-approved scheme within 30 days.",
       },
       {
-        title: "Financial Settlements",
+        title: "Late Deposit Protection",
         description:
-          "Negotiating fair division of assets, pensions, and ongoing financial arrangements.",
+          "Claims where your deposit was protected but outside the statutory 30-day window.",
       },
       {
-        title: "Pre-nuptial Agreements",
+        title: "No Prescribed Information",
         description:
-          "Drafting comprehensive agreements to protect your assets before marriage.",
+          "Claims where your landlord failed to provide the required prescribed information about the deposit scheme.",
       },
       {
-        title: "Cohabitation Agreements",
+        title: "Late Prescribed Information",
         description:
-          "Legal protection for unmarried couples living together.",
+          "Claims where prescribed information was provided outside the statutory deadline.",
       },
       {
-        title: "Domestic Abuse",
+        title: "No Gas Safety Certificate",
         description:
-          "Urgent applications for protective orders and ongoing support.",
+          "Claims related to landlords failing to provide a valid gas safety certificate as required by law.",
+      },
+      {
+        title: "No Energy Performance Certificate",
+        description:
+          "Claims where a valid EPC was not provided to the tenant before or at the start of the tenancy.",
+      },
+      {
+        title: "Unlicensed HMO",
+        description:
+          "Rent repayment and compensation claims against landlords operating an unlicensed house in multiple occupation.",
+      },
+      {
+        title: "Unlicensed Selective Licensing",
+        description:
+          "Claims where the property required selective licensing but the landlord failed to obtain one.",
+      },
+      {
+        title: "Illegal Eviction",
+        description:
+          "Claims for compensation where a landlord unlawfully evicted you without following proper legal procedures.",
+      },
+      {
+        title: "Harassment",
+        description:
+          "Claims against landlords who have engaged in harassment or interference with your right to quiet enjoyment.",
       },
     ],
     faqs: [
       {
-        question: "How long does a divorce take?",
+        question: "How much compensation can I claim for an unprotected deposit?",
         answer:
-          "A straightforward divorce typically takes 4-6 months from petition to decree absolute. However, if there are disputes over finances or children, it can take longer. We work to resolve matters as efficiently as possible.",
+          "The court can award between one and three times the deposit amount as compensation. The exact amount depends on the circumstances, including how long the deposit was unprotected, whether the landlord's failure was deliberate, and any previous history of non-compliance.",
       },
       {
-        question: "Do I need to go to court for a divorce?",
+        question: "Do I need to still be a tenant to make a claim?",
         answer:
-          "Not necessarily. Many divorces are resolved through negotiation and mediation. Court appearances are usually only required when agreements cannot be reached between parties.",
+          "No. You can make a tenancy deposit claim even after your tenancy has ended, provided you bring the claim within the relevant limitation period. We can advise on your specific circumstances during a free initial assessment.",
       },
       {
-        question: "How are assets divided in a divorce?",
+        question: "What is the time limit for making a deposit claim?",
         answer:
-          "The court aims for a fair division based on factors including the length of marriage, contributions to the marriage, future needs, and the welfare of any children. We help negotiate settlements that protect your interests.",
+          "The limitation period is generally six years from the date the deposit should have been protected. However, the rules can be complex depending on whether your tenancy is ongoing or has ended. We recommend seeking advice as soon as possible to preserve your claim.",
+      },
+      {
+        question: "What if my landlord returned my deposit — can I still claim?",
+        answer:
+          "Yes. The compensation for failing to protect a deposit is separate from the return of the deposit itself. Even if your deposit was returned in full, you may still be entitled to compensation of up to 3x the deposit amount.",
       },
     ],
-    teamMembers: ["1", "3"],
-    relatedAreas: ["children-law"],
+    teamMembers: ["1", "2", "3", "4"],
+    relatedAreas: ["rent-repayment-orders"],
     seo: {
-      title: "Family Law Solicitors London | Divorce & Separation",
+      title: "Tenancy Deposit Claim Solicitors London | Up to 3x Compensation",
       description:
-        "Expert family law solicitors in London. Divorce, financial settlements, child arrangements, pre-nuptial agreements. Compassionate, professional service.",
+        "Specialist tenancy deposit claim solicitors in London. Claims for unprotected deposits, late protection, and missing prescribed information. Free initial assessment.",
       keywords: [
-        "family solicitor london",
-        "divorce lawyer",
-        "family law",
-        "separation solicitor",
-      ],
-    },
-  },
-  {
-    id: "children-law",
-    slug: "children-law",
-    title: "Children Law",
-    shortDescription:
-      "Child arrangements, custody matters, and care proceedings.",
-    fullDescription:
-      "When children are involved in family disputes, their welfare is paramount. Our children law specialists handle matters with the sensitivity they deserve, always keeping the child's best interests at the forefront. We represent parents, grandparents, and other family members in custody and access disputes.",
-    icon: "Users",
-    services: [
-      {
-        title: "Child Arrangements Orders",
-        description:
-          "Determining where children live and how they spend time with each parent.",
-      },
-      {
-        title: "Contact Disputes",
-        description:
-          "Resolving disagreements about visitation and maintaining relationships.",
-      },
-      {
-        title: "Care Proceedings",
-        description:
-          "Representing parents when local authorities are involved.",
-      },
-      {
-        title: "Adoption",
-        description: "Legal support throughout the adoption process.",
-      },
-      {
-        title: "Grandparents' Rights",
-        description:
-          "Helping grandparents maintain contact with grandchildren.",
-      },
-    ],
-    faqs: [
-      {
-        question: "What is a Child Arrangements Order?",
-        answer:
-          "A Child Arrangements Order is a court order that sets out where a child will live and who they will spend time with. It replaces the old terms 'custody' and 'access'.",
-      },
-      {
-        question: "Do fathers have equal rights?",
-        answer:
-          "Yes, mothers and fathers have equal legal rights regarding their children. The court's primary consideration is the welfare of the child, not the gender of the parent.",
-      },
-    ],
-    teamMembers: ["1", "3"],
-    relatedAreas: ["family-law"],
-    seo: {
-      title: "Children Law Solicitors London | Child Custody & Arrangements",
-      description:
-        "Experienced children law solicitors helping with child arrangements, custody disputes, and care proceedings. Child-focused approach.",
-      keywords: [
-        "children law solicitor",
-        "child custody lawyer",
-        "child arrangements",
-      ],
-    },
-  },
-  {
-    id: "landlord-tenant",
-    slug: "landlord-tenant",
-    title: "Landlord & Tenant",
-    shortDescription:
-      "Property disputes, evictions, and tenancy agreements.",
-    fullDescription:
-      "Whether you're a landlord dealing with problematic tenants or a tenant facing unfair treatment, our property law team provides clear, practical advice. We handle all aspects of residential and commercial tenancy disputes with efficiency and expertise.",
-    icon: "Home",
-    services: [
-      {
-        title: "Eviction Proceedings",
-        description:
-          "Section 21 and Section 8 notices, possession claims, and enforcement.",
-      },
-      {
-        title: "Rent Arrears",
-        description: "Recovering unpaid rent through negotiation or court action.",
-      },
-      {
-        title: "Tenancy Disputes",
-        description:
-          "Resolving disagreements over deposits, repairs, and obligations.",
-      },
-      {
-        title: "Lease Reviews",
-        description:
-          "Reviewing and negotiating commercial and residential lease terms.",
-      },
-      {
-        title: "Deposit Disputes",
-        description:
-          "Protecting and recovering tenancy deposits through proper channels.",
-      },
-    ],
-    faqs: [
-      {
-        question: "How long does an eviction take?",
-        answer:
-          "The timeline depends on the grounds for eviction and whether the tenant contests it. A Section 21 'no-fault' eviction typically takes 2-4 months if uncontested. Disputed cases can take longer.",
-      },
-      {
-        question: "Can a landlord evict without a reason?",
-        answer:
-          "Currently, landlords can use Section 21 notices for 'no-fault' evictions with proper notice. However, there are strict requirements that must be followed, and the law is changing. We can advise on your specific situation.",
-      },
-    ],
-    teamMembers: ["4"],
-    relatedAreas: ["housing-disrepair"],
-    seo: {
-      title: "Landlord & Tenant Solicitors London | Property Disputes",
-      description:
-        "Expert landlord and tenant solicitors handling evictions, rent disputes, and tenancy issues. Practical advice for property matters.",
-      keywords: [
-        "landlord solicitor",
-        "tenant lawyer",
-        "eviction solicitor",
-        "property dispute",
-      ],
-    },
-  },
-  {
-    id: "employment-law",
-    slug: "employment-law",
-    title: "Employment Law",
-    shortDescription:
-      "Workplace disputes, unfair dismissal, and discrimination claims.",
-    fullDescription:
-      "Employment disputes can affect your livelihood and wellbeing. Our employment law team represents both employees and employers, giving us comprehensive insight into workplace matters. We handle everything from settlement negotiations to tribunal representation.",
-    icon: "Briefcase",
-    services: [
-      {
-        title: "Unfair Dismissal",
-        description:
-          "Challenging wrongful termination and securing compensation.",
-      },
-      {
-        title: "Discrimination Claims",
-        description:
-          "Fighting workplace discrimination based on protected characteristics.",
-      },
-      {
-        title: "Settlement Agreements",
-        description:
-          "Negotiating exit packages and reviewing settlement terms.",
-      },
-      {
-        title: "Employment Contracts",
-        description:
-          "Drafting and reviewing contracts, policies, and handbooks.",
-      },
-      {
-        title: "Tribunal Representation",
-        description:
-          "Strong advocacy at employment tribunals for claimants and respondents.",
-      },
-    ],
-    faqs: [
-      {
-        question: "How long do I have to bring an employment tribunal claim?",
-        answer:
-          "Most employment tribunal claims must be started within 3 months less one day from the date of the act complained of (e.g., dismissal date). Early Conciliation through ACAS is usually required first, which can extend this slightly.",
-      },
-      {
-        question: "What compensation can I receive for unfair dismissal?",
-        answer:
-          "Compensation typically includes a basic award (based on age, service, and weekly pay) and a compensatory award for financial losses. The current cap on compensatory awards is £105,707 or 52 weeks' pay, whichever is lower.",
-      },
-    ],
-    teamMembers: ["2"],
-    relatedAreas: ["criminal-law"],
-    seo: {
-      title: "Employment Law Solicitors London | Unfair Dismissal & Discrimination",
-      description:
-        "Employment law experts handling unfair dismissal, discrimination, and workplace disputes. Tribunal representation available.",
-      keywords: [
-        "employment solicitor london",
-        "unfair dismissal lawyer",
-        "employment tribunal",
+        "tenancy deposit claim solicitor",
+        "deposit protection claim",
+        "unprotected deposit compensation",
+        "prescribed information claim",
+        "tenancy deposit solicitor london",
       ],
     },
   },
@@ -258,35 +107,35 @@ export const practiceAreas: PracticeArea[] = [
     slug: "immigration",
     title: "Immigration",
     shortDescription:
-      "Visa applications, citizenship, appeals, and asylum cases.",
+      "Visa applications, citizenship, settlement, appeals, and asylum cases.",
     fullDescription:
-      "Navigating the UK immigration system can be complex and stressful. Our immigration team provides expert guidance on all visa categories, settlement applications, and appeals. We take pride in helping individuals and families build their lives in the UK.",
+      "Navigating the UK immigration system can be complex and stressful. Our immigration team provides expert guidance on all visa categories, settlement applications, and appeals. We help individuals and families build their lives in the UK with clear advice and strong representation at every stage.",
     icon: "Globe",
     services: [
       {
         title: "Visa Applications",
         description:
-          "Work visas, family visas, student visas, and visitor visas.",
+          "Work visas, family visas, student visas, and visitor visas — prepared and submitted with precision.",
       },
       {
         title: "Settlement & ILR",
         description:
-          "Applications for indefinite leave to remain and permanent residence.",
+          "Applications for indefinite leave to remain and permanent residence in the UK.",
       },
       {
         title: "British Citizenship",
         description:
-          "Naturalisation applications and citizenship ceremonies.",
+          "Naturalisation applications and guidance through the citizenship process.",
       },
       {
         title: "Appeals & Judicial Review",
         description:
-          "Challenging visa refusals and Home Office decisions.",
+          "Challenging visa refusals and Home Office decisions through the tribunal system.",
       },
       {
         title: "Asylum Claims",
         description:
-          "Compassionate support for those seeking protection in the UK.",
+          "Compassionate and thorough support for those seeking protection in the UK.",
       },
     ],
     faqs: [
@@ -298,142 +147,99 @@ export const practiceAreas: PracticeArea[] = [
       {
         question: "Can I work in the UK while my visa is being processed?",
         answer:
-          "This depends on your current immigration status. If you have existing leave that allows work, you can generally continue until a decision is made. We can clarify your specific situation.",
+          "This depends on your current immigration status. If you have existing leave that allows work, you can generally continue until a decision is made. We can clarify your specific situation during a consultation.",
+      },
+      {
+        question: "What happens if my visa application is refused?",
+        answer:
+          "You may have the right to appeal or request an administrative review depending on the visa type and grounds of refusal. We handle appeals at all tribunal levels and can assess whether judicial review is appropriate.",
       },
     ],
     teamMembers: ["1", "3"],
-    relatedAreas: ["family-law"],
+    relatedAreas: ["tenancy-deposit-claims"],
     seo: {
-      title: "Immigration Solicitors London | Visa & Citizenship",
+      title: "Immigration Solicitors London | Visa & Citizenship Applications",
       description:
-        "Experienced immigration solicitors helping with visas, settlement, citizenship, and appeals. Multilingual service available.",
+        "Experienced immigration solicitors in London. Visa applications, settlement, citizenship, appeals, and asylum cases. Clear guidance through every stage.",
       keywords: [
         "immigration solicitor london",
         "visa lawyer",
         "citizenship application",
+        "immigration appeal",
+        "settlement solicitor",
       ],
     },
   },
   {
-    id: "criminal-law",
-    slug: "criminal-law",
-    title: "Criminal Law",
+    id: "rent-repayment-orders",
+    slug: "rent-repayment-orders",
+    title: "Rent Repayment Orders",
     shortDescription:
-      "Criminal defense across all courts with experienced advocates.",
+      "Claims against landlords for unlicensed properties and housing offences under RRA 2025.",
     fullDescription:
-      "If you're facing criminal charges, having experienced legal representation is crucial. Our criminal law team provides robust defense services from police station attendance through to Crown Court trials. We protect your rights and fight for the best possible outcome.",
-    icon: "Scale",
+      "A Rent Repayment Order (RRO) allows tenants to reclaim up to 12 months' rent from landlords who have committed certain housing offences. Under the Renters' Rights Act 2025 — commencing 1 May 2026 with a backstop of 31 July 2026 — the scope of RROs is expanding significantly. Stone & Co. helps tenants identify qualifying offences, build strong applications, and recover the rent they are owed through the First-tier Tribunal.",
+    icon: "Home",
     services: [
       {
-        title: "Police Station Attendance",
+        title: "Unlicensed HMO Claims",
         description:
-          "24/7 representation during police interviews and custody.",
+          "RRO claims where the landlord operates a house in multiple occupation without the required licence.",
       },
       {
-        title: "Magistrates' Court",
+        title: "Selective Licensing Failures",
         description:
-          "Defense for summary offences and either-way matters.",
+          "Claims where the property falls within a selective licensing area and the landlord has no licence.",
       },
       {
-        title: "Crown Court",
+        title: "Illegal Eviction RROs",
         description:
-          "Serious criminal defense with experienced advocates.",
+          "Rent repayment claims arising from unlawful eviction by the landlord.",
       },
       {
-        title: "Motoring Offences",
+        title: "Breach of Improvement Notice",
         description:
-          "Drink driving, speeding, and driving disqualification.",
+          "Claims where the landlord has failed to comply with a local authority improvement notice.",
       },
       {
-        title: "Appeals",
+        title: "RRA 2025 Expanded Offences",
         description:
-          "Challenging convictions and sentences in higher courts.",
+          "New claim types available under the Renters' Rights Act 2025, including expanded grounds and enhanced tenant protections.",
       },
     ],
     faqs: [
       {
-        question: "What should I do if I'm arrested?",
+        question: "What is a Rent Repayment Order?",
         answer:
-          "Remain calm and polite, but exercise your right to legal representation before answering questions. You can request a solicitor at no cost, and we offer 24/7 police station attendance.",
+          "A Rent Repayment Order is a decision by the First-tier Tribunal requiring a landlord to repay rent to a tenant. It applies when the landlord has committed certain housing offences, such as operating an unlicensed HMO or illegally evicting a tenant. You can claim up to 12 months' rent.",
       },
       {
-        question: "Will I go to prison?",
+        question: "What offences qualify for an RRO?",
         answer:
-          "The likelihood of a custodial sentence depends on many factors including the offence, your history, and mitigating circumstances. We work to achieve the best possible outcome in every case.",
+          "Qualifying offences include operating an unlicensed HMO, failing to obtain selective licensing, illegal eviction, breach of an improvement notice, and breach of a banning order. The Renters' Rights Act 2025 will expand the list of qualifying offences further.",
+      },
+      {
+        question: "How much rent can I recover?",
+        answer:
+          "The tribunal can order repayment of up to 12 months' rent. The exact amount depends on the severity of the offence, the landlord's conduct, and whether the landlord has a previous history of housing offences.",
+      },
+      {
+        question: "What is the Renters' Rights Act 2025?",
+        answer:
+          "The Renters' Rights Act 2025 is major new legislation that strengthens tenant protections. It commences on 1 May 2026 with a backstop date of 31 July 2026. Among other changes, it expands the grounds for Rent Repayment Orders and introduces new landlord obligations.",
       },
     ],
-    teamMembers: ["2"],
-    relatedAreas: ["employment-law"],
+    teamMembers: ["2", "4"],
+    relatedAreas: ["tenancy-deposit-claims"],
     seo: {
-      title: "Criminal Law Solicitors London | Criminal Defence",
+      title: "Rent Repayment Order Solicitors London | RRO Claims",
       description:
-        "Experienced criminal defence solicitors. 24/7 police station attendance, magistrates and Crown Court representation.",
+        "Specialist RRO solicitors in London. Claim up to 12 months' rent from landlords committing housing offences. Expert guidance on Renters' Rights Act 2025.",
       keywords: [
-        "criminal solicitor london",
-        "criminal defence lawyer",
-        "police station solicitor",
-      ],
-    },
-  },
-  {
-    id: "housing-disrepair",
-    slug: "housing-disrepair",
-    title: "Housing Disrepair",
-    shortDescription:
-      "Claims for damp, mould, and property disrepair compensation.",
-    fullDescription:
-      "Living in a property with disrepair can seriously affect your health and wellbeing. Our housing disrepair specialists help tenants claim compensation from negligent landlords and housing associations. We handle cases on a no-win, no-fee basis where possible.",
-    icon: "AlertTriangle",
-    services: [
-      {
-        title: "Damp & Mould Claims",
-        description:
-          "Compensation for health issues and property damage from damp.",
-      },
-      {
-        title: "Structural Defects",
-        description:
-          "Claims for failing roofs, walls, windows, and foundations.",
-      },
-      {
-        title: "Heating & Plumbing",
-        description:
-          "Pursuing landlords who fail to maintain essential systems.",
-      },
-      {
-        title: "Pest Infestations",
-        description:
-          "Claims for properties affected by vermin due to disrepair.",
-      },
-      {
-        title: "Council Housing",
-        description:
-          "Specialist experience with local authority housing claims.",
-      },
-    ],
-    faqs: [
-      {
-        question: "How much compensation can I claim?",
-        answer:
-          "Compensation depends on the severity of disrepair, how long it has persisted, and its impact on your health and enjoyment of the property. Awards typically range from £1,000 to £10,000+, with higher amounts for serious health impacts.",
-      },
-      {
-        question: "Do I have to pay upfront?",
-        answer:
-          "We handle many housing disrepair cases on a no-win, no-fee basis, meaning you don't pay legal fees if we don't win. We'll explain all options during your free consultation.",
-      },
-    ],
-    teamMembers: ["4"],
-    relatedAreas: ["landlord-tenant"],
-    seo: {
-      title: "Housing Disrepair Solicitors London | Damp & Mould Claims",
-      description:
-        "No-win, no-fee housing disrepair claims. Compensation for damp, mould, and property defects. Free consultation.",
-      keywords: [
-        "housing disrepair solicitor",
-        "damp claim",
-        "mould compensation",
-        "disrepair claim",
+        "rent repayment order solicitor",
+        "RRO claim london",
+        "rent repayment order",
+        "renters rights act 2025",
+        "unlicensed hmo claim",
       ],
     },
   },

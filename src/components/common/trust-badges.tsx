@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Shield, Award, Users, MapPin } from "lucide-react";
+import { Shield, Scale, MapPin, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 export interface TrustBadge {
@@ -11,23 +11,23 @@ export interface TrustBadge {
 const defaultBadges: TrustBadge[] = [
   {
     icon: <Shield className="w-6 h-6" />,
-    label: "Regulated by",
-    value: "SRA",
-  },
-  {
-    icon: <Award className="w-6 h-6" />,
-    label: "Years Experience",
-    value: "20+",
-  },
-  {
-    icon: <Users className="w-6 h-6" />,
-    label: "Clients Helped",
-    value: "5,000+",
+    label: "SRA Regulated",
+    value: "#640836",
   },
   {
     icon: <MapPin className="w-6 h-6" />,
     label: "London Offices",
     value: "2",
+  },
+  {
+    icon: <MessageCircle className="w-6 h-6" />,
+    label: "Initial Assessment",
+    value: "Free",
+  },
+  {
+    icon: <Scale className="w-6 h-6" />,
+    label: "Practice Areas",
+    value: "Specialist",
   },
 ];
 

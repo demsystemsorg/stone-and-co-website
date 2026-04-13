@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Globe, Heart, Briefcase, FileText, Phone, Mail, ArrowRight } from "lucide-react";
+import { Globe, Shield, Home, FileText, Phone, Mail, ArrowRight } from "lucide-react";
+import { CONTACT } from "@/lib/constants";
 import { PageHero } from "@/components/sections";
 import { Section, Container, Button } from "@/components/ui";
 import { TeamMemberCard, CTABanner } from "@/components/common";
@@ -20,32 +21,25 @@ export const metadata: Metadata = {
 
 const services = [
   {
+    icon: <Shield className="w-6 h-6" />,
+    title: "Depositi Cauzionali",
+    titleEn: "Tenancy Deposit Claims",
+    description:
+      "Reclami per depositi non protetti, informazioni prescritte mancanti e risarcimento fino a 3 volte il deposito.",
+  },
+  {
     icon: <Globe className="w-6 h-6" />,
     title: "Immigrazione",
     titleEn: "Immigration",
     description:
-      "Visti, permessi di soggiorno, status di residente, cittadinanza britannica, e questioni relative alla Brexit.",
+      "Visti, permessi di soggiorno, status di residente, cittadinanza britannica e ricorsi contro decisioni dell'Home Office.",
   },
   {
-    icon: <Heart className="w-6 h-6" />,
-    title: "Diritto di Famiglia",
-    titleEn: "Family Law",
+    icon: <Home className="w-6 h-6" />,
+    title: "Ordini di Rimborso Affitto",
+    titleEn: "Rent Repayment Orders",
     description:
-      "Divorzio, separazione, accordi prematrimoniali, custodia dei figli e divisione patrimoniale.",
-  },
-  {
-    icon: <Briefcase className="w-6 h-6" />,
-    title: "Diritto del Lavoro",
-    titleEn: "Employment Law",
-    description:
-      "Controversie sul lavoro, licenziamento ingiusto, discriminazione e contratti di lavoro.",
-  },
-  {
-    icon: <FileText className="w-6 h-6" />,
-    title: "Questioni Civili",
-    titleEn: "Civil Matters",
-    description:
-      "Contratti, controversie commerciali, proprietà immobiliare e contenziosi civili.",
+      "Reclami contro proprietari per immobili senza licenza e reati abitativi ai sensi del RRA 2025.",
   },
 ];
 
@@ -100,7 +94,7 @@ export default function ConsulentiItalianiPage() {
                 <Link href="/contact">Contattaci</Link>
               </Button>
               <Button variant="secondary" size="lg" asChild>
-                <a href="tel:020XXXXXXXX">
+                <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>
                   <Phone className="w-5 h-5 mr-2" />
                   Chiamaci Ora
                 </a>
@@ -164,7 +158,7 @@ export default function ConsulentiItalianiPage() {
 
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8" />
+                <Globe className="w-8 h-8" />
               </div>
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                 Comprendiamo le Vostre Esigenze
@@ -177,14 +171,14 @@ export default function ConsulentiItalianiPage() {
 
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center mx-auto mb-4">
-                <Briefcase className="w-8 h-8" />
+                <Shield className="w-8 h-8" />
               </div>
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                Esperienza Comprovata
+                Regolamentati dalla SRA
               </h3>
               <p className="text-text-secondary text-sm">
-                Oltre 20 anni di esperienza nel supporto alla comunità italiana
-                a Londra.
+                Studio regolamentato dalla Solicitors Regulation Authority
+                (n. 640836), a garanzia dei più elevati standard professionali.
               </p>
             </div>
           </div>
@@ -231,11 +225,11 @@ export default function ConsulentiItalianiPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a
-              href="tel:020XXXXXXXX"
+              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white rounded-lg border border-neutral-200 hover:border-gold-300 hover:shadow-md transition-all"
             >
               <Phone className="w-5 h-5 text-gold-600" />
-              <span className="font-medium">020 XXXX XXXX</span>
+              <span className="font-medium">{CONTACT.phone}</span>
             </a>
             <a
               href="mailto:italiano@stonelegal.co.uk"

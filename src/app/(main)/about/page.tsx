@@ -7,7 +7,7 @@ import { CTABanner, TrustBadges } from "@/components/common";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Stone & Co. Solicitors - our history, values, and commitment to providing exceptional legal services in London.",
+    "About Stone & Co. Solicitors — SRA regulated (No. 640836). Specialist solicitors for tenancy deposit claims, immigration, and rent repayment orders in London.",
 };
 
 const values = [
@@ -68,26 +68,26 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg max-w-none text-neutral-700">
             <p>
-              Stone & Co. Solicitors was founded with a clear mission: to provide
-              high-quality, accessible legal services to individuals and families
-              across London. From our origins as a small family law practice, we
-              have grown into a full-service firm while maintaining the personal
-              touch that sets us apart.
+              Stone & Co. Solicitors is an SRA-regulated firm (No. 640836)
+              led by principal Davide Cupertino, with a focused mission:
+              to provide specialist, high-quality legal representation
+              for tenants and individuals across London.
             </p>
             <p>
-              Today, we operate from two locations—our City office and our
-              Leytonstone branch—serving clients from all walks of life. Our team
-              of dedicated solicitors brings expertise across family law,
-              immigration, employment disputes, criminal defense, and housing
-              matters.
+              We operate from two offices — our City location in EC2Y and
+              our Leytonstone branch in E11 — and concentrate on three
+              core practice areas: tenancy deposit claims, immigration,
+              and rent repayment orders. This specialist focus means every
+              member of our team has deep expertise in the areas that
+              matter most to our clients.
             </p>
             <p>
-              What makes us different is our approach. We understand that legal
-              matters can be stressful and overwhelming. That's why we prioritize
-              clear communication, realistic advice, and compassionate support
-              throughout your legal journey. Whether you're facing a family
-              dispute, an immigration challenge, or a workplace issue, we're here
-              to guide you every step of the way.
+              With the Renters&apos; Rights Act 2025 commencing in May 2026,
+              our team is at the forefront of the expanding tenant protections,
+              advising both tenants pursuing claims and landlords seeking
+              compliance. We combine clear communication, realistic advice,
+              and determined advocacy to achieve the best possible outcome
+              for every client.
             </p>
           </div>
         </div>

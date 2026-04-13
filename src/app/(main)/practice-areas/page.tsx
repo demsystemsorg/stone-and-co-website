@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Heart,
-  Users,
+  Shield,
   Home,
-  Briefcase,
   Globe,
   Scale,
-  AlertTriangle,
   ArrowRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -19,17 +16,14 @@ import { practiceAreas } from "@/data/practice-areas";
 export const metadata: Metadata = {
   title: "Practice Areas",
   description:
-    "Expert legal services across Family Law, Immigration, Employment, Criminal Defense, Housing Disrepair, and more. Stone & Co. Solicitors - London's trusted legal partner.",
+    "Specialist legal services for tenancy deposit claims, immigration, and rent repayment orders. Stone & Co. Solicitors — London.",
 };
 
 const iconMap: Record<string, LucideIcon> = {
-  Heart,
-  Users,
+  Shield,
   Home,
-  Briefcase,
   Globe,
   Scale,
-  AlertTriangle,
 };
 
 export default function PracticeAreasPage() {
@@ -50,9 +44,9 @@ export default function PracticeAreasPage() {
             How We Can Help
           </h2>
           <p className="text-lg text-neutral-400">
-            Whatever your legal challenge, our team has the expertise and
-            experience to guide you through. Click on any practice area below to
-            learn more about our services.
+            We focus on three areas of law so every client benefits from
+            deep specialist expertise. Click on any practice area below to
+            learn more.
           </p>
         </div>
 
@@ -123,11 +117,12 @@ export default function PracticeAreasPage() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-display text-lg font-semibold text-neutral-900 mb-2">
-                  Experienced Team
+                  Specialist Expertise
                 </h3>
                 <p className="text-neutral-400 text-sm">
-                  Our solicitors bring decades of combined experience across all
-                  practice areas, ensuring expert guidance for your case.
+                  We focus on three practice areas — tenancy deposit claims,
+                  immigration, and rent repayment orders — so every case
+                  benefits from deep, concentrated knowledge.
                 </p>
               </div>
               <div>
@@ -165,17 +160,17 @@ export default function PracticeAreasPage() {
                   Accessible Offices
                 </h3>
                 <p className="text-neutral-400 text-sm">
-                  With offices in the City and Leytonstone, we're conveniently
+                  With offices in the City and Leytonstone, we are conveniently
                   located to serve clients across London.
                 </p>
               </div>
               <div>
                 <h3 className="font-display text-lg font-semibold text-neutral-900 mb-2">
-                  Multilingual Support
+                  RRA 2025 Ready
                 </h3>
                 <p className="text-neutral-400 text-sm">
-                  Our team includes solicitors fluent in Italian and Mandarin,
-                  serving London's diverse communities.
+                  We are at the forefront of the Renters&apos; Rights Act 2025,
+                  advising on the expanded tenant protections commencing May 2026.
                 </p>
               </div>
             </div>

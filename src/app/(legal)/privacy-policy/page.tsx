@@ -202,7 +202,7 @@ export default function PrivacyPolicyPage() {
                 privacy@stonelegal.co.uk
               </a>
               <br />
-              Phone: 020 XXXX XXXX
+              Phone: 020 7118 0530
             </p>
             <p>
               If you are not satisfied with our response, you have the right to

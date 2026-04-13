@@ -1,68 +1,64 @@
 import type { TeamMember } from "@/types/team";
 
-/**
- * Team member data
- * Note: Images and some details are placeholders - to be updated with actual content
- */
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
-    slug: "sarah-stone",
-    name: "Sarah Stone",
-    title: "Managing Partner",
-    qualifications: ["LLB (Hons)", "Solicitor"],
-    image: "/images/team/placeholder-1.jpg",
-    bio: "Sarah founded Stone & Co. Solicitors with a vision to provide accessible, high-quality legal services to the London community. With over 20 years of experience in family law and immigration, she leads our team with dedication and expertise.",
-    specializations: ["Family Law", "Immigration"],
-    practiceAreas: ["family-law", "immigration"],
-    email: "sarah@stonelegal.co.uk",
-    languages: ["English", "Italian"],
+    slug: "ethshaam-hussain",
+    name: "Ethshaam Hussain",
+    title: "Head Solicitor",
+    qualifications: ["Solicitor"], // TODO: confirm qualifications
+    image: "/images/team/placeholder-1.jpg", // TODO: real headshot
+    bio: "Ethshaam leads Stone & Co. Legal from the firm's Leytonstone office, overseeing the delivery of the firm's tenancy deposit, immigration, and rent repayment practices. He brings strategic direction to the team while maintaining a hands-on approach to client matters, ensuring that the standard of work across every case reflects the firm's commitment to thorough, effective representation. Under his leadership, the Leytonstone office has become a trusted resource for tenants and individuals across East London and beyond.",
+    specializations: ["Tenancy Deposit Claims", "Immigration", "Rent Repayment Orders"],
+    practiceAreas: ["tenancy-deposit-claims", "immigration", "rent-repayment-orders"],
+    email: "ethshaam.hussain@stonelegal.co.uk",
+    languages: ["English"],
     featured: true,
     order: 1,
   },
   {
     id: "2",
-    slug: "james-mitchell",
-    name: "James Mitchell",
-    title: "Senior Solicitor",
-    qualifications: ["LLB (Hons)", "LLM", "Solicitor"],
-    image: "/images/team/placeholder-2.jpg",
-    bio: "James specializes in employment law and criminal defense, bringing a meticulous approach to every case. His experience spans both employer and employee representation, giving him unique insight into workplace disputes.",
-    specializations: ["Employment Law", "Criminal Law"],
-    practiceAreas: ["employment-law", "criminal-law"],
-    email: "james@stonelegal.co.uk",
+    slug: "imaan-khan",
+    name: "Imaan Khan",
+    title: "Immigration Specialist",
+    qualifications: ["Solicitor"], // TODO: confirm qualifications
+    image: "/images/team/placeholder-2.jpg", // TODO: real headshot
+    bio: "Imaan is the firm's dedicated immigration specialist, bringing a meticulous and thorough approach to every application and case she handles. She is known for her ability to understand the full complexity of a client's circumstances and translate that into precise, well-prepared submissions. Imaan maintains an up-to-date knowledge of the constantly evolving immigration landscape — from legislative changes and Home Office policy updates to recent case law and tribunal precedents — ensuring her advice reflects the current legal position at all times.",
+    specializations: ["Immigration"],
+    practiceAreas: ["immigration"],
+    email: "imaan.khan@stonelegal.co.uk",
     languages: ["English"],
     featured: true,
     order: 2,
   },
   {
     id: "3",
-    slug: "maria-rossi",
-    name: "Maria Rossi",
-    title: "Associate Solicitor",
-    qualifications: ["LLB (Hons)", "Solicitor"],
-    image: "/images/team/placeholder-3.jpg",
-    bio: "Maria is fluent in Italian and leads our Consulenti Italiani service, providing dedicated support to the Italian community in London. She specializes in immigration and family matters.",
-    specializations: ["Immigration", "Family Law"],
-    practiceAreas: ["immigration", "family-law"],
-    email: "maria@stonelegal.co.uk",
-    languages: ["English", "Italian"],
+    slug: "haroon-attan",
+    name: "Haroon Attan",
+    title: "Tenancy Deposit Solicitor",
+    qualifications: ["Solicitor"], // TODO: confirm qualifications
+    image: "/images/team/placeholder-3.jpg", // TODO: real headshot
+    bio: "Haroon is a tenancy deposit lawyer with a particular talent for resolving negotiations quickly and effectively. He has an instinctive ability to get up to speed on a case rapidly — absorbing the facts, identifying the strongest angles, and processing complex information to build a clear path to the best possible outcome. Clients benefit from his direct, efficient approach: Haroon focuses on results, minimising unnecessary delay while ensuring that no detail is overlooked in pursuit of the compensation his clients are entitled to.",
+    specializations: ["Tenancy Deposit Claims"],
+    practiceAreas: ["tenancy-deposit-claims"],
+    email: "haroon.attan@stonelegal.co.uk",
+    languages: ["English"],
     featured: true,
     order: 3,
   },
   {
     id: "4",
-    slug: "david-chen",
-    name: "David Chen",
-    title: "Solicitor",
-    qualifications: ["LLB (Hons)", "Solicitor"],
-    image: "/images/team/placeholder-4.jpg",
-    bio: "David specializes in housing disrepair claims and landlord-tenant disputes. His passion for housing justice drives him to achieve the best outcomes for clients facing property issues.",
-    specializations: ["Housing Disrepair", "Landlord & Tenant"],
-    practiceAreas: ["housing-disrepair", "landlord-tenant"],
-    email: "david@stonelegal.co.uk",
-    languages: ["English", "Mandarin"],
-    featured: false,
+    slug: "mustafa-pandor",
+    name: "Mustafa Pandor",
+    title: "Tenancy Deposit Solicitor",
+    qualifications: ["Solicitor"], // TODO: confirm qualifications
+    image: "/images/team/placeholder-4.jpg", // TODO: real headshot
+    bio: "Mustafa is a tenancy deposit solicitor with an exceptionally keen eye for detail. He excels at processing cases efficiently at every stage of the tenancy deposit legal pipeline — from initial assessment and evidence gathering through to negotiation and, where necessary, litigation. His ability to absorb, organise, and act on large volumes of case information allows him to move clients through the process as quickly as possible without sacrificing the precision that complex deposit claims demand.",
+    specializations: ["Tenancy Deposit Claims"],
+    practiceAreas: ["tenancy-deposit-claims"],
+    email: "mustafa.pandor@stonelegal.co.uk",
+    languages: ["English"],
+    featured: true,
     order: 4,
   },
 ];

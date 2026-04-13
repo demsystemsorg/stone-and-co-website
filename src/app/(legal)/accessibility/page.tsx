@@ -176,7 +176,7 @@ export default function AccessibilityPage() {
                 accessibility@stonelegal.co.uk
               </a>
               <br />
-              Phone: 020 XXXX XXXX
+              Phone: 020 7118 0530
             </p>
             <p>
               When contacting us, please provide:

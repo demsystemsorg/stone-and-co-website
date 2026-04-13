@@ -8,9 +8,9 @@ import { Container } from "@/components/ui/container";
 const reasons = [
   {
     icon: Award,
-    title: "Decades of experience",
+    title: "Specialist focus",
     description:
-      "Over 20 years of combined expertise across all practice areas, delivering legal advice you can trust.",
+      "We concentrate on three areas — tenancy deposit claims, immigration, and rent repayment orders — so every case benefits from deep expertise.",
   },
   {
     icon: Users,
@@ -26,9 +26,9 @@ const reasons = [
   },
   {
     icon: MessageSquare,
-    title: "Multilingual services",
+    title: "Renters' Rights Act 2025",
     description:
-      "Our team speaks Italian, Mandarin, and more — ensuring clear communication for London's diverse communities.",
+      "We are at the forefront of the new legislation — advising tenants and landlords on expanded protections commencing May 2026.",
   },
 ];
 

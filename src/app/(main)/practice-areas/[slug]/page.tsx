@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
-  Heart,
-  Users,
+  Shield,
   Home,
-  Briefcase,
   Globe,
   Scale,
-  AlertTriangle,
   ArrowLeft,
   ArrowRight,
   Check,
@@ -19,6 +16,7 @@ import { Section, Container, Button } from "@/components/ui";
 import { TeamMemberCard, CTABanner } from "@/components/common";
 import { practiceAreas } from "@/data/practice-areas";
 import { teamMembers } from "@/data/team";
+import { CONTACT } from "@/lib/constants";
 import { FAQAccordion } from "./faq-accordion";
 
 interface PracticeAreaPageProps {
@@ -26,13 +24,10 @@ interface PracticeAreaPageProps {
 }
 
 const iconMap: Record<string, LucideIcon> = {
-  Heart,
-  Users,
+  Shield,
   Home,
-  Briefcase,
   Globe,
   Scale,
-  AlertTriangle,
 };
 
 export async function generateStaticParams() {
@@ -121,7 +116,7 @@ export default async function PracticeAreaPage({
                 <Link href="/contact">Get Legal Advice</Link>
               </Button>
               <a
-                href="tel:020XXXXXXXX"
+                href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
                 className="inline-flex items-center justify-center font-semibold text-[0.85rem] h-[52px] px-8 rounded-md border-[1.5px] border-gold-soft text-white hover:bg-gold hover:text-ink transition-all duration-200"
               >
                 <Phone className="w-5 h-5 mr-2" />

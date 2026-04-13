@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
               Email:{" "}
               <a href="mailto:info@stonelegal.co.uk">info@stonelegal.co.uk</a>
               <br />
-              Phone: 020 XXXX XXXX
+              Phone: 020 7118 0530
             </p>
           </div>
         </Container>

@@ -25,16 +25,15 @@ export const metadata: Metadata = {
     template: "%s | Stone & Co. Solicitors",
   },
   description:
-    "Experienced solicitors in London offering Family Law, Immigration, Employment Law, Criminal Defense and more. Offices in the City (EC2Y) and Leytonstone (E11).",
+    "London solicitors specialising in Tenancy Deposit Claims, Immigration, and Rent Repayment Orders. SRA regulated (No. 640836). Offices in the City (EC2Y) and Leytonstone (E11).",
   keywords: [
     "solicitors london",
-    "family law",
-    "immigration lawyer",
-    "employment solicitor",
-    "criminal defense",
-    "housing disrepair",
-    "landlord tenant",
-    "children law",
+    "tenancy deposit claim",
+    "deposit protection claim",
+    "immigration solicitor london",
+    "rent repayment order",
+    "RRA 2025",
+    "tenancy deposit solicitor",
     "east london solicitors",
     "leytonstone solicitors",
     "city solicitors",
@@ -54,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Stone & Co. Solicitors",
     title: "Stone & Co. Solicitors | London Legal Services",
     description:
-      "Experienced solicitors in London offering Family Law, Immigration, Employment Law, Criminal Defense and more.",
+      "London solicitors specialising in Tenancy Deposit Claims, Immigration, and Rent Repayment Orders. SRA regulated.",
     images: [
       {
         url: "/images/og/default.jpg",

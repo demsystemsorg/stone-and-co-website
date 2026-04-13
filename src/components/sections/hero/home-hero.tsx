@@ -17,10 +17,10 @@ const fadeUp = {
 };
 
 const trustItems = [
-  { icon: Shield, label: "SRA Regulated" },
-  { icon: Award, label: "20+ Years Experience" },
-  { icon: Users, label: "5,000+ Clients" },
+  { icon: Shield, label: "SRA #640836" },
   { icon: MapPin, label: "2 London Offices" },
+  { icon: Award, label: "Free Initial Assessment" },
+  { icon: Users, label: "Specialist Focus" },
 ];
 
 export function HomeHero() {
@@ -50,8 +50,8 @@ export function HomeHero() {
             animate="visible"
             className="font-serif font-medium text-[2.8rem] sm:text-[3.6rem] lg:text-[4rem] leading-[1.08] tracking-[-0.015em] text-ink max-w-[680px] mb-6"
           >
-            Legal counsel for{" "}
-            <span className="text-gold">every stage</span> of life
+            Your rights.{" "}
+            <span className="text-gold">Pursued relentlessly.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -62,9 +62,9 @@ export function HomeHero() {
             animate="visible"
             className="text-[1.05rem] text-muted leading-[1.7] max-w-[520px] mb-10"
           >
-            Trusted solicitors serving London with expertise in family law,
-            immigration, employment disputes, and more. Two convenient
-            locations, one commitment to excellence.
+            London solicitors specialising in tenancy deposit claims,
+            immigration, and rent repayment orders. Two offices,
+            one standard of precision.
           </motion.p>
 
           {/* CTAs */}

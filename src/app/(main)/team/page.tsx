@@ -8,7 +8,7 @@ import { teamMembers } from "@/data/team";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the experienced solicitors at Stone & Co. Our dedicated legal team brings expertise across family law, immigration, employment, criminal defense, and housing matters.",
+    "Meet the solicitors at Stone & Co. Our team specialises in tenancy deposit claims, immigration, and rent repayment orders across London.",
 };
 
 export default function TeamPage() {
@@ -74,31 +74,6 @@ export default function TeamPage() {
               explain things in plain English and keep you informed every step
               of the way.
             </p>
-          </div>
-        </div>
-      </Section>
-
-      <SectionDivider variant="subtle" spacing="sm" />
-
-      {/* Languages Section */}
-      <Section variant="default" padding="md" topEffect="glow">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="font-display text-2xl font-semibold text-neutral-900 mb-4">
-            Multilingual Services
-          </h3>
-          <p className="text-neutral-600 mb-6">
-            Our team includes solicitors fluent in multiple languages, ensuring
-            we can serve London's diverse communities effectively.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["English", "Italian", "Mandarin"].map((lang) => (
-              <span
-                key={lang}
-                className="px-4 py-2 bg-gold-100 text-gold-700 rounded-full text-sm font-medium border border-gold-300"
-              >
-                {lang}
-              </span>
-            ))}
           </div>
         </div>
       </Section>

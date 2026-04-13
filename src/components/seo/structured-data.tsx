@@ -76,7 +76,7 @@ export function LawFirmSchema({ type = "LocalBusiness" }: LawFirmSchemaProps) {
       // Social media URLs to be added
     ],
     knowsAbout: PRACTICE_AREAS.map((area) => area.title),
-    knowsLanguage: ["en", "it", "zh"],
+    knowsLanguage: ["en"],
   };
 
   return (
