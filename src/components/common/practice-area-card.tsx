@@ -16,14 +16,14 @@ export function PracticeAreaCard({ title, description, href }: PracticeAreaCardP
   return (
     <Link
       href={href}
-      className="group flex flex-col gap-3 p-8 md:p-9 bg-surface hover:bg-bg transition-colors duration-200 h-full"
+      className="group flex flex-col gap-3 p-8 md:p-9 bg-surface hover:bg-bg transition-colors duration-200 h-full hover-underline-gold touch-feedback"
     >
       <div className="flex items-center justify-between gap-3">
-        <h3 className="font-serif font-semibold text-[1.3rem] leading-[1.2] text-ink">
+        <h3 className="font-serif font-semibold text-[1.3rem] leading-[1.2] text-ink group-hover:text-gold-deep transition-colors duration-200">
           {title}
         </h3>
         <ArrowRight
-          className="w-[18px] h-[18px] text-gold-soft group-hover:text-gold group-hover:translate-x-[3px] transition-all duration-200 shrink-0"
+          className="w-[18px] h-[18px] text-gold-soft group-hover:text-gold group-hover:translate-x-[3px] transition-all duration-[250ms] delay-[50ms] shrink-0"
           strokeWidth={1.5}
         />
       </div>

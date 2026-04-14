@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="bg-ink text-white/50" role="contentinfo">
       {/* Main Footer */}
-      <div className="pt-16 pb-14 lg:pt-20">
+      <div className="pt-20 pb-16 lg:pt-24">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
             {/* Brand column */}
@@ -29,7 +29,7 @@ export function Footer() {
 
             {/* Offices column */}
             <div>
-              <h4 className="font-serif font-semibold text-base text-white mb-5">
+              <h4 className="font-serif font-medium text-lg text-gold mb-6">
                 Offices
               </h4>
               <div className="mb-6">
@@ -78,7 +78,7 @@ export function Footer() {
       <div className="border-t border-white/[0.08]">
         <Container>
           <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[0.78rem] text-white/25 text-center md:text-left">
+            <p className="text-[0.72rem] text-white/25 text-center md:text-left">
               &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
             </p>
             <nav aria-label="Legal" className="flex flex-wrap items-center gap-6">
@@ -86,14 +86,14 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[0.78rem] text-white/30 hover:text-gold transition-colors"
+                  className="group relative pl-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/30 hover:text-gold transition-colors before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-1 before:rounded-full before:bg-gold before:scale-0 before:transition-transform before:duration-200 hover:before:scale-100"
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
                 href="/complaints"
-                className="text-[0.78rem] text-white/30 hover:text-gold transition-colors"
+                className="group relative pl-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/30 hover:text-gold transition-colors before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-1 before:rounded-full before:bg-gold before:scale-0 before:transition-transform before:duration-200 hover:before:scale-100"
               >
                 Complaints Procedure
               </Link>

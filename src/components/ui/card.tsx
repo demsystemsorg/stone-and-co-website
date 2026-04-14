@@ -7,7 +7,7 @@ import { cardHoverVariants } from "@/styles/animations";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Visual style variant */
-  variant?: "default" | "elevated" | "feature" | "dark";
+  variant?: "default" | "elevated" | "feature" | "dark" | "editorial";
   /** Padding size */
   padding?: "none" | "sm" | "md" | "lg";
   /** Enable hover animation */
@@ -21,6 +21,7 @@ const variantStyles = {
   elevated: "bg-white border-none shadow-md",
   feature: "bg-neutral-50 border-none shadow-none",
   dark: "bg-neutral-900 border-none shadow-none text-white",
+  editorial: "bg-white border-l-[3px] border-gold shadow-none",
 };
 
 const paddingStyles = {
@@ -44,7 +45,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => {
     const baseStyles = cn(
-      "rounded-lg overflow-hidden",
+      "rounded-none overflow-hidden",
       variantStyles[variant],
       paddingStyles[padding],
       className

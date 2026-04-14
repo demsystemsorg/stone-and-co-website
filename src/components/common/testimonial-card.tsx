@@ -25,14 +25,16 @@ export function TestimonialCard({
   return (
     <div
       className={cn(
-        "flex flex-col h-full p-6 md:p-8 rounded-lg",
-        isDark ? "bg-neutral-900 text-white" : "bg-white border border-neutral-200"
+        "group flex flex-col h-full p-6 md:p-8 rounded-lg transition-all duration-[280ms] touch-feedback",
+        isDark
+          ? "bg-neutral-900 text-white hover:shadow-[inset_2px_0_0_var(--gold),0_2px_8px_rgba(199,164,87,0.08)]"
+          : "bg-white border border-neutral-200 hover:shadow-[inset_2px_0_0_var(--gold),0_2px_8px_rgba(199,164,87,0.06)]"
       )}
     >
       {/* Quote icon */}
       <Quote
         className={cn(
-          "w-10 h-10 mb-4",
+          "w-10 h-10 mb-4 group-hover:scale-[1.08] transition-transform duration-200",
           isDark ? "text-gold-400" : "text-gold-500"
         )}
       />

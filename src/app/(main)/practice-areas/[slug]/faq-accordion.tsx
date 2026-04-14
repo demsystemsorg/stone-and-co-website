@@ -9,16 +9,16 @@ function FAQItem({ faq, index }: { faq: FAQ; index: number }) {
   const [isOpen, setIsOpen] = React.useState(index === 0);
 
   return (
-    <div className="border-b border-neutral-700 last:border-b-0 px-6">
+    <div className="border-b border-line last:border-b-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-5 text-left group"
+        className="w-full flex items-center justify-between py-6 text-left group"
       >
-        <span className="font-display text-lg font-semibold text-white group-hover:text-gold-400 transition-colors pr-4">
+        <span className="font-serif text-[1.1rem] font-medium text-ink group-hover:text-gold-deep transition-colors pr-4">
           {faq.question}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-neutral-500 transition-transform duration-200 flex-shrink-0 ${
+          className={`w-4 h-4 text-gold flex-shrink-0 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -32,7 +32,9 @@ function FAQItem({ faq, index }: { faq: FAQ; index: number }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <p className="text-neutral-400 pb-5 pr-4">{faq.answer}</p>
+            <p className="text-dim text-[0.95rem] leading-[1.7] pb-6 pr-8">
+              {faq.answer}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -42,7 +44,7 @@ function FAQItem({ faq, index }: { faq: FAQ; index: number }) {
 
 export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
   return (
-    <div className="bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden">
+    <div>
       {faqs.map((faq, index) => (
         <FAQItem key={index} faq={faq} index={index} />
       ))}

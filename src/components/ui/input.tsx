@@ -73,7 +73,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               [hintId, errorId].filter(Boolean).join(" ") || undefined
             }
             className={cn(
-              "flex h-11 w-full rounded-md border bg-white px-4 py-2",
+              "flex h-11 w-full border bg-white px-4 py-2",
               "text-base text-neutral-900 placeholder:text-neutral-400",
               "transition-colors duration-200",
               "focus:outline-none focus:ring-2 focus:ring-gold-600 focus:ring-offset-0 focus:border-gold-600",

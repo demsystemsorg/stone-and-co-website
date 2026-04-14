@@ -1,96 +1,121 @@
 "use client";
 
 import * as React from "react";
-import { useInView } from "framer-motion";
-import { cn } from "@/lib/cn";
-import { Section } from "@/components/ui/section";
+import { Container } from "@/components/ui/container";
+import { useCounter } from "@/lib/anime/useCounter";
+import { prefersReducedMotion } from "@/lib/anime/reduced-motion";
 
 interface Stat {
   value: number;
   suffix?: string;
+  prefix?: string;
   label: string;
 }
 
 const stats: Stat[] = [
-  { value: 20, suffix: "+", label: "Years Experience" },
-  { value: 5000, suffix: "+", label: "Clients Helped" },
+  { value: 3, suffix: "x", label: "Statutory Deposit Penalty" },
+  { value: 20, suffix: "+", label: "Years Combined Experience" },
   { value: 98, suffix: "%", label: "Success Rate" },
   { value: 2, suffix: "", label: "London Offices" },
 ];
 
-function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
-  const [displayValue, setDisplayValue] = React.useState(0);
-
-  React.useEffect(() => {
-    if (isInView) {
-      const duration = 2000;
-      const startTime = Date.now();
-
-      const animate = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Ease out quad
-        const easeOut = 1 - (1 - progress) * (1 - progress);
-        setDisplayValue(Math.floor(easeOut * value));
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-
-      requestAnimationFrame(animate);
-    }
-  }, [isInView, value]);
-
-  const formattedValue = value >= 1000
-    ? displayValue.toLocaleString()
-    : displayValue;
+function AnimatedStat({ stat }: { stat: Stat }) {
+  const { ref, display } = useCounter({
+    value: stat.value,
+    suffix: stat.suffix,
+    prefix: stat.prefix,
+    duration: 1500,
+  });
 
   return (
-    <span ref={ref} className="tabular-nums">
-      {formattedValue}{suffix}
-    </span>
+    <div className="text-center py-4 px-6">
+      <p className="stat-value">
+        <span ref={ref} className="tabular-nums">
+          {display}
+        </span>
+      </p>
+      <p className="stat-label">{stat.label}</p>
+    </div>
   );
 }
 
-export interface StatsSectionProps {
-  variant?: "light" | "dark";
-}
+export function StatsSection() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const sweepRef = React.useRef<HTMLDivElement>(null);
 
-export function StatsSection({ variant = "dark" }: StatsSectionProps) {
-  const isDark = variant === "dark";
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    const sweep = sweepRef.current;
+    if (!el || !sweep || prefersReducedMotion()) return;
+
+    let isIntersecting = false;
+    let ticking = false;
+
+    const updateSweep = () => {
+      if (!isIntersecting) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Progress: 0 when bottom edge enters viewport → 1 when fully visible
+      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+      sweep.style.transform = `scaleX(${progress})`;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateSweep);
+        ticking = true;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isIntersecting = entry.isIntersecting;
+          if (isIntersecting) {
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll(); // trigger initial position
+          } else {
+            window.removeEventListener("scroll", onScroll);
+            sweep.style.transform = "scaleX(0)";
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   return (
-    <Section
-      variant={isDark ? "dark" : "default"}
-      padding="lg"
-      topEffect="glow"
-      className={cn(!isDark && "border-y border-neutral-200")}
-    >
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-        {stats.map((stat, index) => (
-          <div key={index} className="text-center">
-            <p
-              className={cn(
-                "font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-2",
-                isDark ? "text-gold-600" : "text-gold-600"
-              )}
+    <section ref={sectionRef} className="stats-bar relative">
+      {/* Gold sweep line — scroll-linked */}
+      <div
+        ref={sweepRef}
+        className="absolute top-0 left-0 w-full h-px bg-gold/30"
+        style={{ transformOrigin: "left", transform: "scaleX(0)" }}
+      />
+      <Container>
+        <div className="grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className={
+                index < stats.length - 1
+                  ? "lg:border-r lg:border-white/10"
+                  : ""
+              }
             >
-              <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-            </p>
-            <p
-              className={cn(
-                "text-sm md:text-base font-medium",
-                isDark ? "text-neutral-600" : "text-text-secondary"
-              )}
-            >
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </Section>
+              <AnimatedStat stat={stat} />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }

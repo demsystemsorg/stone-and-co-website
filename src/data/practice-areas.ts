@@ -87,7 +87,7 @@ export const practiceAreas: PracticeArea[] = [
           "Yes. The compensation for failing to protect a deposit is separate from the return of the deposit itself. Even if your deposit was returned in full, you may still be entitled to compensation of up to 3x the deposit amount.",
       },
     ],
-    teamMembers: ["1", "2", "3", "4"],
+    teamMembers: ["1", "3", "4"],
     relatedAreas: ["rent-repayment-orders"],
     seo: {
       title: "Tenancy Deposit Claim Solicitors London | Up to 3x Compensation",
@@ -155,7 +155,7 @@ export const practiceAreas: PracticeArea[] = [
           "You may have the right to appeal or request an administrative review depending on the visa type and grounds of refusal. We handle appeals at all tribunal levels and can assess whether judicial review is appropriate.",
       },
     ],
-    teamMembers: ["1", "3"],
+    teamMembers: ["1", "2"],
     relatedAreas: ["tenancy-deposit-claims"],
     seo: {
       title: "Immigration Solicitors London | Visa & Citizenship Applications",
@@ -228,7 +228,7 @@ export const practiceAreas: PracticeArea[] = [
           "The Renters' Rights Act 2025 is major new legislation that strengthens tenant protections. It commences on 1 May 2026 with a backstop date of 31 July 2026. Among other changes, it expands the grounds for Rent Repayment Orders and introduces new landlord obligations.",
       },
     ],
-    teamMembers: ["2", "4"],
+    teamMembers: ["1"],
     relatedAreas: ["tenancy-deposit-claims"],
     seo: {
       title: "Rent Repayment Order Solicitors London | RRO Claims",

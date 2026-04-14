@@ -1,89 +1,181 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
+import { createTimeline } from "animejs";
+import { prefersReducedMotion } from "@/lib/anime/reduced-motion";
+import { ease } from "@/lib/anime/config";
 
 const steps = [
   {
     number: "01",
-    title: "Tell us your matter",
+    title: "Consultation",
     description:
-      "A brief enquiry form. No jargon, just plain questions about what you need help with.",
+      "A detailed review of your situation to identify the strongest legal leverage points.",
   },
   {
     number: "02",
-    title: "We match your solicitor",
+    title: "Formal Notice",
     description:
-      "Your enquiry goes directly to the specialist best placed to handle your case.",
+      "Issuing a commanding Letter Before Action that signals our intent to proceed.",
   },
   {
     number: "03",
-    title: "Consultation within 24 hours",
+    title: "Resolution",
     description:
-      "You'll hear from us within one working day with a clear next step and transparent fees.",
+      "Securing your compensation through aggressive negotiation or decisive court action.",
   },
 ];
 
-const stagger = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function ProcessSection() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const cardRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const underlineRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const connectorRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    if (prefersReducedMotion()) return;
+
+    const validCards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+    const validUnderlines = underlineRefs.current.filter(Boolean) as HTMLDivElement[];
+    const validConnectors = connectorRefs.current.filter(Boolean) as HTMLDivElement[];
+
+    // Set initial states (raw DOM to avoid hydration mismatch)
+    const setHidden = () => {
+      validCards.forEach((el) => {
+        el.style.opacity = "0.3";
+        el.style.transform = "translateX(-8px)";
+      });
+      validUnderlines.forEach((el) => {
+        el.style.transform = "scaleX(0)";
+      });
+      validConnectors.forEach((el) => {
+        el.style.transform = "scaleX(0)";
+      });
+    };
+    setHidden();
+
+    let tl: ReturnType<typeof createTimeline> | null = null;
+
+    const runAnimation = () => {
+      tl?.revert();
+      setHidden();
+
+      tl = createTimeline({
+        defaults: { ease: ease.primary },
+      });
+
+      validCards.forEach((card, i) => {
+        // Card illuminates
+        tl!.add(card, {
+          opacity: [0.3, 1],
+          translateX: [-8, 0],
+          duration: 400,
+        }, i === 0 ? 0 : "+=0");
+
+        // Title underline draws
+        if (validUnderlines[i]) {
+          tl!.add(validUnderlines[i]!, {
+            scaleX: [0, 1],
+            duration: 300,
+          }, "-=300");
+        }
+
+        // Connector to next card (energy transfer)
+        if (i < validCards.length - 1 && validConnectors[i]) {
+          tl!.add(validConnectors[i]!, {
+            scaleX: [0, 1],
+            duration: 200,
+            ease: ease.linear,
+          }, "-=100");
+        }
+      });
+    };
+
+    const resetToHidden = () => {
+      tl?.revert();
+      tl = null;
+      setHidden();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runAnimation();
+          } else {
+            resetToHidden();
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      tl?.revert();
+    };
+  }, []);
+
   return (
-    <section className="py-16 md:py-24 bg-bg">
+    <section ref={sectionRef} className="section-rise py-24 md:py-36 bg-line-soft">
       <Container>
-        {/* Header */}
+        {/* Header — centered italic serif */}
         <div className="text-center mb-16">
-          <p className="text-[0.7rem] font-semibold tracking-[0.12em] uppercase text-gold-deep">
-            How We Work
-          </p>
-          <h2 className="font-serif font-medium text-[2.1rem] md:text-[2.55rem] leading-[1.15] tracking-[-0.01em] text-ink mt-2">
-            Three steps to resolution
+          <p className="eyebrow mb-3">How We Work</p>
+          <h2 className="font-serif text-[2.4rem] md:text-[3rem] leading-[1.1] tracking-[-0.02em] text-ink">
+            <em>The Path to Justice</em>
           </h2>
-          <span className="gold-rule gold-rule--center" />
-          <p className="text-[1rem] text-muted leading-[1.65] max-w-[560px] mx-auto mt-4">
-            Tell us what you need — we&apos;ll route it instantly to the right person.
-          </p>
+          <hr className="gold-rule gold-rule--center" />
         </div>
 
-        {/* Steps */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 max-w-[920px] mx-auto"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-80px" }}
-        >
+        {/* Cards with momentum connectors */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_32px_1fr_32px_1fr] gap-6 md:gap-0">
           {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              variants={item}
-              className="text-center relative"
-            >
-              <span className="font-serif font-normal text-[3.2rem] leading-none text-gold-soft block mb-5">
-                {step.number}
-              </span>
-              <h3 className="font-serif font-semibold text-[1.25rem] text-ink mb-2.5">
-                {step.title}
-              </h3>
-              <p className="text-[0.88rem] text-dim leading-[1.65] max-w-[280px] mx-auto">
-                {step.description}
-              </p>
+            <React.Fragment key={i}>
+              <div
+                ref={(el) => { cardRefs.current[i] = el; }}
+                className="group relative bg-white/50 backdrop-blur-sm border border-line p-10 md:p-12 overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(199,164,87,0.06)] transition-all duration-200 touch-feedback"
+              >
+                {/* Giant watermark number */}
+                <span className="watermark-number absolute -bottom-8 -right-4 group-hover:opacity-[0.10] transition-opacity duration-200">
+                  {step.number}
+                </span>
 
-              {/* Connector line — desktop only */}
+                <div className="relative z-10">
+                  <h3 className="font-serif font-medium text-[1.5rem] md:text-[1.75rem] leading-[1.2] text-ink pb-4 mb-4">
+                    {step.title}
+                  </h3>
+                  {/* Animated gold underline */}
+                  <div
+                    ref={(el) => { underlineRefs.current[i] = el; }}
+                    className="h-[2px] bg-gold mb-4 -mt-4"
+                    style={{ transformOrigin: "left" }}
+                  />
+                  <p className="text-[1rem] text-muted leading-[1.7]">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Gold connector between cards — desktop only */}
               {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-7 -right-5 w-10 h-px bg-line" />
+                <div className="hidden md:flex items-center justify-center">
+                  <div
+                    ref={(el) => { connectorRefs.current[i] = el; }}
+                    className="h-[1.5px] w-full bg-gold"
+                    style={{ transformOrigin: "left" }}
+                  />
+                </div>
               )}
-            </motion.div>
+            </React.Fragment>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );

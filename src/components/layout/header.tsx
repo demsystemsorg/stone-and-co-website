@@ -9,6 +9,7 @@ import { cn } from "@/lib/cn";
 import { NAVIGATION, CONTACT } from "@/lib/constants";
 import { Container } from "@/components/ui/container";
 import { Logo } from "./logo";
+import { useMagnetic } from "@/lib/anime/useProximity";
 
 export interface HeaderProps {
   transparent?: boolean;
@@ -19,6 +20,8 @@ export function Header({ transparent = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+  const ctaRef = React.useRef<HTMLAnchorElement>(null);
+  useMagnetic(ctaRef, { radius: 50, maxDisplacement: 2 });
 
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -47,7 +50,7 @@ export function Header({ transparent = false }: HeaderProps) {
     >
       <Container>
         <nav
-          className="flex items-center justify-between h-[72px]"
+          className="flex items-center justify-between h-[56px]"
           aria-label="Main navigation"
         >
           {/* Logo */}
@@ -70,10 +73,10 @@ export function Header({ transparent = false }: HeaderProps) {
                   >
                     <button
                       className={cn(
-                        "flex items-center gap-1 px-4 py-2 text-[0.82rem] font-medium rounded-md transition-colors relative",
+                        "group/nav flex items-center gap-1 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] transition-colors relative",
                         isActive
                           ? "text-ink"
-                          : "text-muted hover:text-ink hover:bg-ink/[0.03]"
+                          : "text-muted hover:text-ink"
                       )}
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
@@ -85,9 +88,10 @@ export function Header({ transparent = false }: HeaderProps) {
                           openDropdown === item.label && "rotate-180"
                         )}
                       />
-                      {isActive && (
-                        <span className="absolute bottom-1 left-4 right-4 h-px bg-gold" />
-                      )}
+                      <span className={cn(
+                        "absolute bottom-1 left-4 right-4 h-px bg-gold",
+                        !isActive && "origin-left scale-x-0 transition-transform duration-200 group-hover/nav:scale-x-100"
+                      )} />
                     </button>
 
                     <AnimatePresence>
@@ -99,14 +103,14 @@ export function Header({ transparent = false }: HeaderProps) {
                           transition={{ duration: 0.15 }}
                           className="absolute top-full left-0 pt-2 w-72"
                         >
-                          <div className="bg-surface rounded-lg shadow-md border border-line py-2 overflow-hidden">
+                          <div className="bg-surface shadow-md border border-line py-2 overflow-hidden">
                             {item.children.map((child) => (
                               <Link
                                 key={child.href}
                                 href={child.href}
                                 className={cn(
-                                  "block px-4 py-3 hover:bg-bg transition-colors",
-                                  pathname === child.href && "bg-gold-bg"
+                                  "block pl-3.5 pr-4 py-3 border-l-2 border-transparent hover:border-gold hover:bg-bg transition-all duration-150",
+                                  pathname === child.href && "bg-gold-bg border-gold"
                                 )}
                               >
                                 <span className="block text-sm font-medium text-ink">
@@ -130,16 +134,17 @@ export function Header({ transparent = false }: HeaderProps) {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 text-[0.82rem] font-medium rounded-md transition-colors relative",
+                    "group px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] transition-colors relative",
                     isActive
                       ? "text-ink"
-                      : "text-muted hover:text-ink hover:bg-ink/[0.03]"
+                      : "text-muted hover:text-ink"
                   )}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-1 left-4 right-4 h-px bg-gold" />
-                  )}
+                  <span className={cn(
+                    "absolute bottom-1 left-4 right-4 h-px bg-gold",
+                    !isActive && "origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"
+                  )} />
                 </Link>
               );
             })}
@@ -155,8 +160,9 @@ export function Header({ transparent = false }: HeaderProps) {
               <span className="hidden xl:inline">{CONTACT.phone}</span>
             </a>
             <Link
+              ref={ctaRef}
               href="/contact"
-              className="text-[0.78rem] font-semibold tracking-[0.02em] text-ink px-5 py-2.5 border-[1.5px] border-gold rounded-md hover:bg-gold hover:text-surface transition-all duration-200 hover:shadow-gold"
+              className="text-[0.68rem] font-bold uppercase tracking-[0.15em] text-ink px-6 py-2.5 border border-gold hover:bg-gold hover:text-surface hover:scale-[1.01] active:scale-[0.98] active:duration-100 transition-all duration-200 hover:shadow-gold"
             >
               Make an Enquiry
             </Link>
@@ -164,7 +170,7 @@ export function Header({ transparent = false }: HeaderProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-md text-ink hover:bg-ink/[0.05] transition-colors"
+            className="lg:hidden p-2 text-ink hover:bg-ink/[0.05] transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -202,7 +208,7 @@ export function Header({ transparent = false }: HeaderProps) {
                         <Link
                           href={item.href}
                           className={cn(
-                            "block px-0 py-3 text-base font-medium transition-colors border-b border-line-soft",
+                            "block px-0 py-3 text-base font-medium transition-colors border-b border-line-soft active:border-gold",
                             isActive ? "text-gold-deep" : "text-ink"
                           )}
                         >
@@ -233,7 +239,7 @@ export function Header({ transparent = false }: HeaderProps) {
                       key={item.label}
                       href={item.href}
                       className={cn(
-                        "block px-0 py-3 text-base font-medium transition-colors border-b border-line-soft",
+                        "block px-0 py-3 text-base font-medium transition-colors border-b border-line-soft active:border-gold",
                         isActive ? "text-gold-deep" : "text-ink"
                       )}
                     >
@@ -253,7 +259,7 @@ export function Header({ transparent = false }: HeaderProps) {
                   </a>
                   <Link
                     href="/contact"
-                    className="block w-full text-center text-sm font-semibold text-ink px-6 py-3.5 border-[1.5px] border-gold rounded-md hover:bg-gold hover:text-surface transition-all"
+                    className="block w-full text-center text-[0.72rem] font-bold uppercase tracking-[0.15em] text-ink px-6 py-3.5 border border-gold hover:bg-gold hover:text-surface transition-all"
                   >
                     Make an Enquiry
                   </Link>

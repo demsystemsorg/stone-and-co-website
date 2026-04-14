@@ -1,7 +1,4 @@
-"use client";
-
 import * as React from "react";
-import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { OFFICES } from "@/lib/constants";
@@ -12,51 +9,30 @@ export interface LocationsSectionProps {
   variant?: "light" | "dark";
 }
 
-const stagger = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 const offices = [OFFICES.city, OFFICES.leytonstone];
 
 export function LocationsSection() {
   return (
-    <section className="py-16 md:py-24 bg-bg">
+    <section className="section-rise py-24 md:py-36 bg-bg">
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-[0.7rem] font-semibold tracking-[0.12em] uppercase text-gold-deep">
-            Locations
-          </p>
-          <h2 className="font-serif font-medium text-[2.1rem] md:text-[2.55rem] leading-[1.15] tracking-[-0.01em] text-ink mt-2">
-            Our offices
+          <h2 className="font-serif font-medium text-[2.4rem] md:text-[3rem] leading-[1.1] tracking-[-0.02em] text-ink">
+            Our Offices
           </h2>
-          <span className="gold-rule gold-rule--center" />
-          <p className="text-[1rem] text-muted leading-[1.65] max-w-[560px] mx-auto mt-4">
+          <p className="text-[1.125rem] text-muted leading-[1.65] max-w-[560px] mx-auto mt-4">
             Visit us at one of our two London locations.
           </p>
         </div>
 
         {/* Office cards */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[800px] mx-auto"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-80px" }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[800px] mx-auto">
           {offices.map((office) => (
-            <motion.div
+            <div
               key={office.id}
-              variants={item}
-              className="bg-surface border border-line rounded-[10px] p-9 hover:border-gold-soft transition-colors duration-200"
+              className="group bg-surface border border-line p-9 hover:border-gold-soft hover:shadow-[0_2px_12px_rgba(199,164,87,0.06)] transition-all duration-200 touch-feedback"
             >
-              <h3 className="font-serif font-semibold text-[1.2rem] text-ink mb-4">
+              <h3 className="font-serif font-medium text-[1.2rem] text-ink mb-4 hover-underline-gold inline-block pb-0.5">
                 {office.name}
               </h3>
 
@@ -84,14 +60,14 @@ export function LocationsSection() {
                 href={office.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-5 text-[0.82rem] font-semibold text-gold-deep hover:text-gold transition-colors"
+                className="inline-flex items-center gap-2 mt-5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-gold-deep hover:text-gold transition-colors"
               >
                 Get directions
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
               </a>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );

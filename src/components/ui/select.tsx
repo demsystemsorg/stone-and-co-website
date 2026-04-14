@@ -72,7 +72,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               [hintId, errorId].filter(Boolean).join(" ") || undefined
             }
             className={cn(
-              "flex h-11 w-full appearance-none rounded-md border bg-white px-4 py-2 pr-10",
+              "flex h-11 w-full appearance-none border bg-white px-4 py-2 pr-10",
               "text-base text-neutral-900",
               "transition-colors duration-200 cursor-pointer",
               "focus:outline-none focus:ring-2 focus:ring-gold-600 focus:ring-offset-0 focus:border-gold-600",

@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import { LawFirmSchema } from "@/components/seo";
+import { GoldRuleAnimator } from "@/components/ui/gold-rule-animator";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { SectionRiseObserver } from "@/components/ui/section-rise-observer";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
@@ -95,14 +99,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="en-GB" className={`${cormorantGaramond.variable} ${dmSans.variable}`}>
       <body className="font-sans bg-bg text-ink antialiased">
         <LawFirmSchema />
+        <GoldRuleAnimator />
+        <ScrollProgress />
+        <SectionRiseObserver />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
         <Header />
-        <main id="main-content" className="min-h-screen pt-[72px]">
+        <main id="main-content" className="min-h-screen pt-[56px]">
           {children}
         </main>
         <Footer />

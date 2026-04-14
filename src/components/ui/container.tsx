@@ -13,8 +13,8 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 const sizeStyles = {
   sm: "max-w-3xl", // 768px
   md: "max-w-5xl", // 1024px
-  lg: "max-w-[1160px]", // 1160px — design system v2
-  xl: "max-w-[1160px]", // 1160px — design system v2
+  lg: "max-w-[1240px]", // 1240px — design system v2
+  xl: "max-w-[1240px]", // 1240px — design system v2
   full: "max-w-full",
 };
 

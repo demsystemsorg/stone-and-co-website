@@ -1,94 +1,229 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
-import { Award, Users, MapPin, MessageSquare } from "lucide-react";
 import { Container } from "@/components/ui/container";
+import { createTimeline, stagger, set } from "animejs";
+import { splitText } from "animejs/text";
+import type { TextSplitter } from "animejs/text";
+import { prefersReducedMotion } from "@/lib/anime/reduced-motion";
+import { ease, duration } from "@/lib/anime/config";
 
-const reasons = [
+const features = [
   {
-    icon: Award,
-    title: "Specialist focus",
+    numeral: "I",
+    title: "Both Sides of the Tenancy",
     description:
-      "We concentrate on three areas — tenancy deposit claims, immigration, and rent repayment orders — so every case benefits from deep expertise.",
+      "We represent tenants pursuing deposit claims and rent repayment orders — and advise landlords on compliance, licensing, and RRA readiness. That dual perspective makes us sharper on both.",
   },
   {
-    icon: Users,
-    title: "Client-focused approach",
+    numeral: "II",
+    title: "Dedicated Immigration Department",
     description:
-      "Your needs come first. Clear communication and personalised service throughout your legal matter.",
+      "A standalone immigration team with country-specific case knowledge, Home Office policy tracking, and tribunal advocacy from initial application through appeal.",
   },
   {
-    icon: MapPin,
-    title: "Two convenient locations",
+    numeral: "III",
+    title: "Rent Repayment & RRA 2025",
     description:
-      "Offices in the City and Leytonstone. Accessible wherever you are in London, with evening appointments available.",
+      "Deep specialism in rent repayment orders — covering all 16 offence types under the Housing and Planning Act 2016 and the Renters' Rights Act 2025, from eligibility assessment through to tribunal.",
   },
   {
-    icon: MessageSquare,
-    title: "Renters' Rights Act 2025",
+    numeral: "IV",
+    title: "City & East London",
     description:
-      "We are at the forefront of the new legislation — advising tenants and landlords on expanded protections commencing May 2026.",
+      "Offices in the City of London and Leytonstone. Evening appointments available.",
   },
 ];
 
-export interface WhyChooseUsProps {
-  title?: string;
-  subtitle?: string;
-}
-
-const stagger = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-
 export function WhyChooseUs() {
-  return (
-    <section className="py-16 md:py-24 bg-surface border-t border-b border-line">
-      <Container>
-        {/* Header */}
-        <div className="mb-14">
-          <p className="text-[0.7rem] font-semibold tracking-[0.12em] uppercase text-gold-deep">
-            Why Stone &amp; Co.
-          </p>
-          <h2 className="font-serif font-medium text-[2.1rem] md:text-[2.55rem] leading-[1.15] tracking-[-0.01em] text-ink mt-2">
-            Built on integrity, driven by results
-          </h2>
-          <span className="gold-rule" />
-        </div>
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const headingRef = React.useRef<HTMLHeadingElement>(null);
+  const goldBorderRef = React.useRef<HTMLDivElement>(null);
+  const numeralRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
+  const featureRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
 
-        {/* Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-12"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-80px" }}
-        >
-          {reasons.map((reason, i) => {
-            const Icon = reason.icon;
-            return (
-              <motion.div key={i} variants={item} className="flex gap-5">
-                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-lg border border-line bg-bg text-gold">
-                  <Icon className="w-5 h-5" strokeWidth={1.5} />
+    if (prefersReducedMotion()) {
+      if (goldBorderRef.current) set(goldBorderRef.current, { scaleY: 1 });
+      return;
+    }
+
+    // Set initial hidden states
+    if (goldBorderRef.current) set(goldBorderRef.current, { scaleY: 0 });
+    const validNumerals = numeralRefs.current.filter(Boolean) as HTMLSpanElement[];
+    const validFeatures = featureRefs.current.filter(Boolean) as HTMLDivElement[];
+    set(validNumerals, { scale: 1.3, opacity: 0 });
+    set(validFeatures, { opacity: 0, translateX: 6 });
+
+    // Split heading for word-level blur reveal
+    let split: TextSplitter | null = null;
+    if (headingRef.current) {
+      split = splitText(headingRef.current, { words: true });
+      set(split.words, { opacity: 0, filter: "blur(4px)" });
+    }
+
+    let tl: ReturnType<typeof createTimeline> | null = null;
+
+    const runAnimation = () => {
+      tl?.revert();
+
+      // Re-set states before replay
+      if (split) set(split.words, { opacity: 0, filter: "blur(4px)" });
+      if (goldBorderRef.current) set(goldBorderRef.current, { scaleY: 0 });
+      set(validNumerals, { scale: 1.3, opacity: 0 });
+      set(validFeatures, { opacity: 0, translateX: 6 });
+
+      tl = createTimeline({
+        defaults: { ease: ease.primary },
+      });
+
+      // T=0ms — Heading words resolve from blur
+      if (split && split.words.length > 0) {
+        tl.add(split.words, {
+          opacity: [0, 1],
+          filter: ["blur(4px)", "blur(0px)"],
+          duration: 400,
+          delay: stagger(60),
+        });
+      }
+
+      // T=200ms — Gold border draws
+      if (goldBorderRef.current) {
+        tl.add(goldBorderRef.current, {
+          scaleY: [0, 1],
+          duration: duration.slow,
+        }, "-=200");
+      }
+
+      // T=300ms+ — Numerals stamp in with overshoot, features inscribe
+      validNumerals.forEach((numeral, i) => {
+        const offset = i === 0 ? "-=200" : "-=250";
+        tl!.add(numeral, {
+          scale: [1.3, 1.0],
+          opacity: [0, 1],
+          duration: 350,
+          ease: ease.stamp,
+        }, offset);
+
+        if (validFeatures[i]) {
+          tl!.add(validFeatures[i]!, {
+            opacity: [0, 1],
+            translateX: [6, 0],
+            duration: 300,
+          }, "-=280");
+        }
+      });
+    };
+
+    const resetToHidden = () => {
+      tl?.revert();
+      tl = null;
+      if (split) set(split.words, { opacity: 0, filter: "blur(4px)" });
+      if (goldBorderRef.current) set(goldBorderRef.current, { scaleY: 0 });
+      set(validNumerals, { scale: 1.3, opacity: 0 });
+      set(validFeatures, { opacity: 0, translateX: 6 });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runAnimation();
+          } else {
+            resetToHidden();
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      tl?.revert();
+      split?.revert();
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="section-rise py-24 md:py-36 bg-surface border-t border-line">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Left — text content */}
+          <div className="relative lg:pr-16">
+            {/* Animated gold border */}
+            <div
+              ref={goldBorderRef}
+              className="hidden lg:block absolute right-0 top-0 bottom-0 w-[4px] bg-gold"
+              style={{ transformOrigin: "top" }}
+            />
+
+            <div>
+              <p className="eyebrow mb-3">The Firm</p>
+              <h2
+                ref={headingRef}
+                className="font-serif font-medium text-[2.4rem] md:text-[3rem] leading-[1.1] tracking-[-0.02em] text-ink mb-8"
+              >
+                Specialists first. Solicitors always.
+              </h2>
+            </div>
+
+            <p className="text-[1.125rem] text-muted leading-[1.7] mb-12">
+              Three areas of law — tenancy deposit claims, immigration,
+              and rent repayment orders — with the depth of a specialist
+              firm and the focus to pursue every case to its fullest.
+            </p>
+
+            {/* Feature items with roman numerals */}
+            <div className="space-y-8">
+              {features.slice(0, 2).map((feature, i) => (
+                <div key={i} className="group flex gap-6 cursor-default">
+                  <span
+                    ref={(el) => { numeralRefs.current[i] = el; }}
+                    className="font-serif text-[2rem] font-semibold text-gold leading-none flex-shrink-0 w-10 group-hover:scale-[1.06] transition-transform duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]"
+                  >
+                    {feature.numeral}
+                  </span>
+                  <div ref={(el) => { featureRefs.current[i] = el; }}>
+                    <h3 className="font-serif font-medium text-[1.2rem] text-ink mb-1.5 hover-underline-gold inline-block pb-0.5">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[0.88rem] text-dim leading-[1.65] group-hover:text-muted transition-colors duration-200">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-serif font-semibold text-[1.15rem] text-ink mb-1.5">
-                    {reason.title}
-                  </h3>
-                  <p className="text-[0.88rem] text-dim leading-[1.65]">
-                    {reason.description}
-                  </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — additional features */}
+          <div className="flex flex-col justify-center">
+            <div className="space-y-8">
+              {features.slice(2).map((feature, i) => (
+                <div key={i} className="group flex gap-6 cursor-default">
+                  <span
+                    ref={(el) => { numeralRefs.current[i + 2] = el; }}
+                    className="font-serif text-[2rem] font-semibold text-gold leading-none flex-shrink-0 w-10 group-hover:scale-[1.06] transition-transform duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]"
+                  >
+                    {feature.numeral}
+                  </span>
+                  <div ref={(el) => { featureRefs.current[i + 2] = el; }}>
+                    <h3 className="font-serif font-medium text-[1.2rem] text-ink mb-1.5 hover-underline-gold inline-block pb-0.5">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[0.88rem] text-dim leading-[1.65] group-hover:text-muted transition-colors duration-200">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </Container>
     </section>
   );

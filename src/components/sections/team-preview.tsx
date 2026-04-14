@@ -2,14 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/cn";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { TeamMemberCard } from "@/components/common/team-member-card";
 import { featuredTeamMembers } from "@/data/team";
-import { staggerContainer, staggerItem } from "@/styles/animations";
 
 export interface TeamPreviewProps {
   title?: string;
@@ -38,16 +35,10 @@ export function TeamPreview({
         </Button>
       </div>
 
-      {/* Team grid */}
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, margin: "-100px" }}
-      >
+      {/* Team grid — no stagger animations, cards just present */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {featuredTeamMembers.slice(0, 3).map((member) => (
-          <motion.div key={member.id} variants={staggerItem}>
+          <div key={member.id}>
             <TeamMemberCard
               name={member.name}
               title={member.title}
@@ -55,9 +46,9 @@ export function TeamPreview({
               specializations={member.specializations}
               href={`/team/${member.slug}`}
             />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </Section>
   );
 }

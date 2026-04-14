@@ -37,9 +37,9 @@ const variantStyles = {
 };
 
 const sizeStyles = {
-  sm: "h-9 px-4 text-[0.78rem] gap-1.5 rounded-md",
-  md: "h-11 px-6 text-[0.85rem] gap-2 rounded-md",
-  lg: "h-[52px] px-8 text-[0.85rem] gap-2.5 rounded-md",
+  sm: "h-9 px-5 text-[0.72rem] gap-1.5",
+  md: "h-12 px-10 text-[0.78rem] gap-2",
+  lg: "h-[56px] px-12 text-[0.85rem] gap-2.5",
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -60,7 +60,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const isDisabled = disabled || loading;
 
     const buttonClasses = cn(
-      "inline-flex items-center justify-center font-semibold tracking-[0.01em] transition-all duration-200",
+      "inline-flex items-center justify-center font-bold uppercase tracking-[0.15em] transition-all duration-200 active:scale-[0.98] active:duration-100",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2",
       variantStyles[variant],
       sizeStyles[size],
