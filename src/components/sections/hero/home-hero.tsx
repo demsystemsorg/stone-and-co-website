@@ -239,7 +239,7 @@ export function HomeHero() {
       <Container className="relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 md:gap-8 lg:gap-12 pt-16 pb-24 md:pt-24 md:pb-36">
           {/* Left column — hero content */}
-          <div className="md:col-span-7">
+          <div className="md:col-span-8">
             {/* Eyebrow with inline gold rule */}
             <div ref={eyebrowRef} className="flex items-center gap-4 mb-14" style={{ willChange: "transform" }}>
               <span className="text-gold-deep font-sans text-[0.68rem] uppercase tracking-[0.3em] font-extrabold">
@@ -335,24 +335,7 @@ export function HomeHero() {
             </div>
           </div>
 
-          {/* Right column — display logo (md+ only, fluid) */}
-          <div
-            ref={displayLogoRef}
-            className="hidden md:flex md:col-span-5 items-center justify-center select-none cursor-default relative"
-            style={{ willChange: "transform" }}
-            onMouseEnter={() => {
-              if (!prefersReducedMotion()) displayLogoHandle.current?.replay();
-            }}
-          >
-            {/* Subtle halo — softens carousel behind the seal */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse 70% 60% at center, rgba(255,255,255,0.55) 0%, transparent 70%)",
-              }}
-            />
-            <HeroDisplayLogo ref={displayLogoHandle} />
-          </div>
+          {/* Right column — seal hidden */}
         </div>
       </Container>
 
