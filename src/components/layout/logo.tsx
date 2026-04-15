@@ -15,22 +15,29 @@ export interface LogoProps extends React.HTMLAttributes<HTMLAnchorElement> {
 
 const sizeStyles = {
   sm: {
+    bar: "w-[2px]",
     name: "text-[0.85rem] font-semibold tracking-[-0.01em]",
     tagline: "text-[0.42rem] tracking-[0.25em]",
+    gap: "gap-2",
   },
   md: {
+    bar: "w-[2.5px]",
     name: "text-[1.05rem] font-semibold tracking-[-0.01em]",
     tagline: "text-[0.48rem] tracking-[0.25em]",
+    gap: "gap-2.5",
   },
   lg: {
+    bar: "w-[3px]",
     name: "text-[1.6rem] font-semibold tracking-[-0.01em]",
     tagline: "text-[0.6rem] tracking-[0.3em]",
+    gap: "gap-3.5",
   },
 };
 
 const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
   ({ className, variant = "full", size = "md", light = false, ...props }, ref) => {
     const s = sizeStyles[size];
+    const barRef = React.useRef<HTMLDivElement>(null);
     const stoneRef = React.useRef<HTMLSpanElement>(null);
     const ampRef = React.useRef<HTMLSpanElement>(null);
     const coRef = React.useRef<HTMLSpanElement>(null);
@@ -40,13 +47,16 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
     const wasScrolledRef = React.useRef(false);
 
     const setHiddenStates = React.useCallback(() => {
+      const bar = barRef.current;
       const stone = stoneRef.current;
       const amp = ampRef.current;
       const co = coRef.current;
       const dot = dotRef.current;
       const tagline = taglineRef.current;
-      if (!stone || !amp || !co || !dot) return;
+      if (!bar || !stone || !amp || !co || !dot) return;
 
+      bar.style.opacity = "0";
+      bar.style.transform = "scaleY(0)";
       stone.style.transform = "translateX(-105%)";
       amp.style.opacity = "0";
       amp.style.clipPath = "inset(100% 0 0 0)";
@@ -60,12 +70,13 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
     }, []);
 
     const buildAndPlay = React.useCallback(() => {
+      const bar = barRef.current;
       const stone = stoneRef.current;
       const amp = ampRef.current;
       const co = coRef.current;
       const dot = dotRef.current;
       const tagline = taglineRef.current;
-      if (!stone || !amp || !co || !dot) return;
+      if (!bar || !stone || !amp || !co || !dot) return;
 
       tlRef.current?.revert();
       setHiddenStates();
@@ -74,43 +85,51 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
         defaults: { ease: ease.primary },
       });
 
-      // T=0 — "Stone" slides out
+      // T=0 — Gold bar draws from top
+      tl.add(bar, {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        duration: 300,
+        ease: ease.inkDraw,
+      }, 0);
+
+      // T=150 — "Stone" slides out from bar
       tl.add(stone, {
         translateX: ["-105%", "0%"],
         duration: 280,
         ease: ease.authority,
-      }, 0);
+      }, 150);
 
-      // T=150 — "&" clip-path reveal
+      // T=300 — "&" clip-path reveal
       tl.add(amp, {
         opacity: [0, 1],
         clipPath: ["inset(100% 0 0 0)", "inset(0% 0 0 0)"],
         duration: 250,
         ease: ease.primary,
-      }, 150);
+      }, 300);
 
-      // T=300 — "Co" slides out
+      // T=450 — "Co" slides out
       tl.add(co, {
         translateX: ["-105%", "0%"],
         duration: 220,
         ease: ease.authority,
-      }, 300);
+      }, 450);
 
-      // T=450 — "." stamps
+      // T=600 — "." stamps
       tl.add(dot, {
         opacity: [0, 1],
         scale: [0, 1],
         duration: 180,
         ease: ease.stamp,
-      }, 450);
+      }, 600);
 
-      // T=500 — "SOLICITORS" fades in
+      // T=650 — "SOLICITORS" fades in
       if (tagline) {
         tl.add(tagline, {
           opacity: [0, 1],
           translateY: ["-4px", "0px"],
           duration: 250,
-        }, 500);
+        }, 650);
       }
 
       tlRef.current = tl;
@@ -118,7 +137,7 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
 
     React.useEffect(() => {
       if (prefersReducedMotion()) {
-        [stoneRef, ampRef, coRef, dotRef, taglineRef].forEach((r) => {
+        [barRef, stoneRef, ampRef, coRef, dotRef, taglineRef].forEach((r) => {
           if (r.current) {
             r.current.style.opacity = "1";
             r.current.style.transform = "none";
@@ -156,13 +175,26 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
       <Link
         ref={ref}
         href="/"
-        className={cn("group inline-flex flex-col", className)}
+        className={cn("group inline-flex items-stretch", s.gap, className)}
         aria-label="Stone & Co. Solicitors - Home"
         onMouseEnter={handleMouseEnter}
         {...props}
       >
-        {/* Wordmark — serif with gold ampersand */}
-        <div className="flex items-baseline leading-none">
+        {/* Gold pillar bar */}
+        <div
+          ref={barRef}
+          className={cn(
+            "flex-shrink-0 self-stretch",
+            light ? "bg-gold-soft" : "bg-gold",
+            s.bar
+          )}
+          style={{ opacity: 0, transformOrigin: "top" }}
+        />
+
+        {/* Stacked wordmark + tagline */}
+        <div className="flex flex-col justify-center">
+          {/* Wordmark — serif with gold ampersand */}
+          <div className="flex items-baseline leading-none">
           {/* "Stone" */}
           <div className="overflow-hidden">
             <span
@@ -222,18 +254,19 @@ const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>(
           </span>
         </div>
 
-        {/* "SOLICITORS" tagline */}
-        <span
-          ref={taglineRef}
-          className={cn(
-            "font-sans uppercase font-medium mt-0.5",
-            light ? "text-white/50" : "text-dim/70",
-            s.tagline
-          )}
-          style={{ opacity: 0 }}
-        >
-          Solicitors
-        </span>
+          {/* "SOLICITORS" tagline */}
+          <span
+            ref={taglineRef}
+            className={cn(
+              "font-sans uppercase font-medium mt-0.5",
+              light ? "text-white/50" : "text-dim/70",
+              s.tagline
+            )}
+            style={{ opacity: 0 }}
+          >
+            Solicitors
+          </span>
+        </div>
       </Link>
     );
   }
